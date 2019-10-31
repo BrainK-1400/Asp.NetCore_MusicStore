@@ -1,0 +1,21 @@
+﻿@model MusicStore.ViewModels.RoleAddViewModel
+
+@{
+    ViewData["Title"] = "AddRole";
+}
+
+<h1>AddRole</h1>
+
+<form method="post">
+    <div class="form-group row">
+        <label asp-for="RoleName" class="col-sm-2"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="RoleName" />
+            <span class="is-invalid" asp-validation-for="RoleName"></span>
+        </div>
+    </div>
+    <div class="is-invalid" asp-validation-summary="ModelOnly">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>

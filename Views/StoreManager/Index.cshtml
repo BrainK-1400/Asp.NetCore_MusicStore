@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MusicStore.Models.Album>
+
+@{
+    ViewData["Title"] = "StoreManager";
+}
+@using MusicStore.Utils
+
+<h1>StoreManager</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AlbumId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GenreId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtistId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlbumId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre.Name)
+            </td>
+            <td>
+                @Html.Truncate(item.Artist.Name.ToString(),24)
+            </td>
+            <td>
+                @Html.Truncate(item.Title.ToString(), 15)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.AlbumId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.AlbumId  }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.AlbumId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+

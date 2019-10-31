@@ -1,0 +1,48 @@
+﻿@using MusicStore.ViewModels
+@model ShoppingCartViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Your cart</h2>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Quantity</th>
+            <th>Item</th>
+            <th class="text-right">Price</th>
+            <th class="text-right">Subtotal</th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.ShoppingCart.Lines)
+        {
+        <tr>
+            <td class="text-center">@line.Count</td>
+            <td class="text-left">@line.Album.Title</td>
+            <td class="text-right">@line.Album.Price.ToString("c")</td>
+            <td class="text-right">
+                @((line.Count * line.Album.Price).ToString("c"))
+            </td>
+            <td>
+                <form asp-action="RemoveFromCart" method="post">
+                    <input type="hidden" name="ProductID" value="@line.Album.AlbumId" />
+                    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                    <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                </form>
+            </td>
+        </tr>}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right">
+                @Model.ShoppingCart.ComputeTotalValue().ToString("c")
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<div class="text-center">
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue shopping</a>
+</div>

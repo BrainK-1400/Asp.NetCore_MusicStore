@@ -1,0 +1,8 @@
+﻿@model ShoppingCart
+
+    @if (Model.Lines.Count() > 0)
+    {
+        <small>
+            (@Model.Lines.Sum(x => x.Count) item(s)
+            @Model.ComputeTotalValue().ToString("c")）
+        </small>}

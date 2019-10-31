@@ -1,0 +1,7 @@
+﻿@model IEnumerable<MusicStore.Models.Genre>
+@foreach (var item in Model)
+{
+    <li>
+        @Html.ActionLink(item.Name, "Browse", new { item.GenreId })
+    </li>
+}

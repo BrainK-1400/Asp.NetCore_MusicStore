@@ -1,0 +1,31 @@
+﻿@model MusicStore.Models.Genre
+@{
+    ViewData["Title"] = "Browse";
+}
+
+<h1>Browse</h1>
+
+<div style="width:2000px">
+    <div style="float:left">
+        @await Component.InvokeAsync("StoreMenu")
+    </div>
+    <div style="float:left;padding-left:80px">
+
+        <h2>Browsing Genre: @Model.Name</h2>
+
+        @if (Model.Albums.Count == 0)
+        {
+            <h5>No Record!</h5>
+        }
+        <ul>
+            @foreach (var album in Model.Albums)
+            {
+                <li>
+                    @Html.ActionLink(album.Title, "Details", new { id = album.AlbumId })
+                </li>
+
+            }
+        </ul>
+
+    </div>
+</div>

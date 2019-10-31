@@ -1,0 +1,16 @@
+﻿@model MusicStore.ViewModels.UserRoleViewModel
+@{
+    ViewData["Title"] = "AddUserToRole";
+}
+
+<h1>添加用户到角色</h1>
+
+<form asp-action="AddUserToRole" method="post">
+    <input type="hidden" name="roleId" value="@Model.RoleId" />
+
+    <select class="form-control" style="width: 300px; display: inline;" asp-for="UserId" asp-items="@(new SelectList(Model.Users, "Id", "UserName"))">
+    </select>
+
+    <button class="btn btn-primary" type="submit">Add</button>
+    <a class="btn btn-secondary" asp-action="EditRole" asp-route-id="@Model.RoleId">Back</a>
+</form>
